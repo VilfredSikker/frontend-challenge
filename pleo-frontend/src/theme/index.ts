@@ -13,15 +13,15 @@ const lightTheme = {
 }
 const darkTheme = {
 	colors: {
-		main: "#0000",
-	},
-
-	backgroundColors: {
 		main: "#fff",
 	},
 
+	backgroundColors: {
+		main: "#000",
+	},
+
 	borders: {
-		thin: "#000",
+		thin: "#fff",
 	},
 }
 
