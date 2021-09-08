@@ -7,8 +7,15 @@ export interface ExpensesRespone {
 	total: number
 }
 
+export interface ExpenseRequestProps {
+	limit: number
+	offSet: number
+}
 export class ExpenseService {
-	async getExpenses(limit: number, offSet: number): Promise<ExpensesRespone> {
+	async getExpenses({
+		limit,
+		offSet,
+	}: ExpenseRequestProps): Promise<ExpensesRespone> {
 		const url = `${URL}/expenses?limit=${limit}&offset${offSet}`
 
 		return fetch(url)

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import styled, { ThemeProvider } from "styled-components"
 import { Button } from "./components/button"
+import { ExpenseList } from "./components/expense-list/expense-list"
 import { Nav } from "./components/nav"
 import { useThemeContext } from "./context/theme-context"
 import { Expense } from "./models/expense"
@@ -24,10 +25,10 @@ const App = () => {
 	useEffect(() => {
 		const load = async () => {
 			const service = new ExpenseService()
-			const { expenses, total }: ExpensesRespone = await service.getExpenses(
-				10,
-				0
-			)
+			const { expenses, total }: ExpensesRespone = await service.getExpenses({
+				limit: 10,
+				offSet: 0,
+			})
 			console.log(expenses, total)
 			setExpenses(expenses)
 			setTotalExpenses(total)
@@ -40,7 +41,9 @@ const App = () => {
 		<ThemeProvider theme={getTheme(ThemeContext.theme)}>
 			<MainContainer>
 				<Nav />
-				<main></main>
+				<main>
+					<ExpenseList expenses={expenses || []} />
+				</main>
 			</MainContainer>
 		</ThemeProvider>
 	)
