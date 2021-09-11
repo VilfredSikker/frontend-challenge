@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import { useTheme } from "../../hooks/useTheme"
-import { Button } from "../button"
+import { Button } from "../base/button"
 
 const NavContainer = styled.header`
 	display: flex;

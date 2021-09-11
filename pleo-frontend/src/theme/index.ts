@@ -1,13 +1,13 @@
-const defaultVariables = {
+export const defaultVariables = {
 	bp: {
 		tablet: "@media only screen and (min-width: 476px)",
 		desktop: "@media only screen and (min-width: 769px)",
 		desktop_xl: "@media only screen and (min-width: 1441px)",
 	},
 
-	space: ["0.5em", "1em", "2em", "4em"],
+	space: { xs: "0.2rem", s: "0.5rem", nm: "1rem", l: "2rem", xl: "4rem" },
 
-	fontSize: ["10px", "14px", "18px", "24"],
+	fontSize: { sx: "10px", s: "14px", nm: "18px", l: "24", xl: "32px" },
 
 	borderRadius: {
 		discrete: "5%",
@@ -20,6 +20,10 @@ const defaultVariables = {
 			"rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 12%) 0px 1px 1px 0px, rgb(60 66 87 / 16%) 0px 0px 0px 1px, rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(60 66 87 / 8%) 0px 2px 5px 0px",
 	},
 }
+
+export type FontSize = "xs" | "s" | "nm" | "l" | "xl"
+export type BorderRadius = "discrete" | "normal" | "round"
+export type Space = "xs" | "s" | "nm" | "l" | "xl"
 
 const lightTheme = {
 	...defaultVariables,
