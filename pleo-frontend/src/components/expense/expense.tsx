@@ -1,33 +1,28 @@
-import styled, { useTheme } from "styled-components"
+import styled from "styled-components"
 import { Expense } from "../../models/expense"
 import { Flex } from "../base/flex"
-import { Text } from "../base/text/text"
+import { Heading, Paragraph } from "../base/text/text"
 
 const ExpenseContainer = styled(Flex)`
-	display: flex;
-
+	flex: 1;
 	justify-content: space-between;
+
+	${(props) => props.theme.space.s};
 `
 
-export const ExpenseListEntry = ({ amount, date, comment }: Expense) => {
+export const ExpenseListEntry = ({ amount, date, merchant }: Expense) => {
 	return (
-		<ExpenseContainer sx={{ margin: "xs", flex: 1 }} className="expense">
-			<Flex sx={{ justifyContent: "space-between" }}>
-				<Flex>
-					<Text sx={{}}>{amount.value}</Text>
-					<Text sx={{}}>{amount.currency}</Text>
-				</Flex>
+		<ExpenseContainer className="expense">
+			<Flex>
+				<Paragraph>{merchant}</Paragraph>
 			</Flex>
 			<Flex>
-				<Text>{date}</Text>
+				<Paragraph>{amount.value}</Paragraph>
+				<Paragraph>{amount.currency}</Paragraph>
 			</Flex>
-			{/* <div>
-				<div>{amount.value}</div>
-				<div>{amount.currency}</div>
-			</div>
-			<div>
-				<div>{date} </div>
-			</div> */}
+			<Flex>
+				<Paragraph>{date}</Paragraph>
+			</Flex>
 		</ExpenseContainer>
 	)
 }

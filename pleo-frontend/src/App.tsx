@@ -7,13 +7,30 @@ import { Expense } from "./models/expense"
 import { ExpenseService, ExpensesRespone } from "./services/expense-service"
 import { getTheme } from "./theme"
 
-const MainContainer = styled.div`
+const Container = styled.div`
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh;
 
-	color: ${({ theme }) => theme.colors.primary};
-	background-color: ${({ theme }) => theme.colors.background.primary};
+	${({ theme }) => `
+		color: ${theme.colors.primary};
+		background-color: ${theme.colors.background.primary};
+
+		${theme.bp.desktop} {
+			padding: 0px;	
+		}
+	
+	`}
+`
+
+const Main = styled.main`
+	${({ theme }) => `
+		padding: ${theme.space.s};
+		
+		${theme.bp.desktop} {
+			padding: ${theme.space.nm};
+		}
+	`}
 `
 
 const App = () => {
@@ -38,12 +55,12 @@ const App = () => {
 
 	return (
 		<ThemeProvider theme={getTheme(ThemeContext.theme)}>
-			<MainContainer>
+			<Container>
 				<Nav />
-				<main>
+				<Main>
 					<ExpenseList expenses={expenses || []} />
-				</main>
-			</MainContainer>
+				</Main>
+			</Container>
 		</ThemeProvider>
 	)
 }
