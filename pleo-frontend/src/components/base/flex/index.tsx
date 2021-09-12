@@ -1,11 +1,13 @@
 import React, { ReactNode } from "react"
 import styled from "styled-components"
-import { ComponentStyles, SxProps } from "../sx"
+import { FlexOnClick } from "../../../global-types/types"
+import { SxProps } from "../sx"
 
 interface FlexProps {
 	children: ReactNode
 	sx?: SxProps
 	className?: any
+	onClick?: FlexOnClick
 	direction?: "row" | "column" | "row-reverse" | "column-reverse"
 }
 
@@ -20,9 +22,14 @@ const Container = styled.div<FlexProps>`
 
 export const Flex: React.FC<FlexProps & React.HTMLAttributes<HTMLDivElement>> =
 	(props: FlexProps) => {
-		const { sx, children, className, direction } = props
+		const { sx, children, className, direction, onClick } = props
 		return (
-			<Container sx={sx} className={className} direction={direction}>
+			<Container
+				sx={sx}
+				className={className}
+				direction={direction}
+				onClick={onClick}
+			>
 				{children}
 			</Container>
 		)

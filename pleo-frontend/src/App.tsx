@@ -42,7 +42,7 @@ const App = () => {
 		const load = async () => {
 			const service = new ExpenseService()
 			const { expenses, total }: ExpensesRespone = await service.getExpenses({
-				limit: 10,
+				limit: 50,
 				offSet: 0,
 			})
 			console.log(expenses, total)
