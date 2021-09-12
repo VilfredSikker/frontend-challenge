@@ -1,8 +1,9 @@
 import { Expense } from "../../models/expense"
 import styled from "styled-components"
-import { ExpenseListEntry } from "../expense/expense"
+import { ExpenseDrawerComponent, ExpenseListEntry } from "../expense/expense"
 import { Flex } from "../base/flex"
 import { Heading, Paragraph } from "../base/text/text"
+import { useDrawer } from "../../hooks/useDrawer"
 
 interface ExpenseListProps {
 	expenses: Expense[]
@@ -48,21 +49,37 @@ const List = styled(Flex)`
 `
 
 export const ExpenseList = ({ expenses }: ExpenseListProps) => {
+	const { drawerContent, setDrawerContent, setDrawerVisible } = useDrawer({
+		initialComponent: null,
+	})
+
+	const handleExpenseClicked = (expense: Expense) => {
+		setDrawerContent(<ExpenseDrawerComponent {...expense} />)
+		setDrawerVisible(true)
+	}
+
 	return (
-		<ExpenseListContainer>
-			<Flex className="heading">
-				<Heading level="h1">Expenses</Heading>
-			</Flex>
-			<List>
-				<Flex className="list-header">
-					<Paragraph className="list-header-text">Merchant</Paragraph>
-					<Paragraph className="list-header-text">Price & Amount</Paragraph>
-					<Paragraph className="list-header-text">Date</Paragraph>
+		<>
+			<ExpenseListContainer>
+				<Flex className="heading">
+					<Heading level="h1">Expenses</Heading>
 				</Flex>
-				{expenses.map((expense: Expense) => (
-					<ExpenseListEntry key={expense.id} {...expense} />
-				))}
-			</List>
-		</ExpenseListContainer>
+				<List>
+					<Flex className="list-header">
+						<Paragraph className="list-header-text">Merchant</Paragraph>
+						<Paragraph className="list-header-text">Price & Amount</Paragraph>
+						<Paragraph className="list-header-text">Date</Paragraph>
+					</Flex>
+					{expenses.map((expense: Expense) => (
+						<ExpenseListEntry
+							key={expense.id}
+							expense={expense}
+							onClick={() => handleExpenseClicked(expense)}
+						/>
+					))}
+				</List>
+			</ExpenseListContainer>
+			{drawerContent}
+		</>
 	)
 }

@@ -1,13 +1,13 @@
 import React, { ReactNode } from "react"
 import styled from "styled-components"
-import { FlexOnClick } from "../../../global-types/types"
+import { DivOnClick } from "../../../global-types/types"
 import { SxProps } from "../sx"
 
 interface FlexProps {
 	children: ReactNode
 	sx?: SxProps
 	className?: any
-	onClick?: FlexOnClick
+	onClick?: DivOnClick
 	direction?: "row" | "column" | "row-reverse" | "column-reverse"
 }
 

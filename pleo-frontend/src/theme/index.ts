@@ -37,8 +37,8 @@ const lightTheme = {
 		transparent: "transparent",
 		background: {
 			primary: "#F0F8FA", // Alice Blue
-			primary_faded: "#F0F8FA1A",
-			secondary: "#889FA5", // Pewter Blue
+			secondary: "#171219", // Pewter Blue
+			secondary_faded: "#1712199e",
 		},
 		buttons: {
 			primary: "#1D343D",

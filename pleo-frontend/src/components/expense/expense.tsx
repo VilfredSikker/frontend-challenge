@@ -1,9 +1,10 @@
 import styled from "styled-components"
+import { DivOnClick } from "../../global-types/types"
 import { Expense } from "../../models/expense"
 import { Flex } from "../base/flex"
-import { Paragraph } from "../base/text/text"
+import { Heading, Paragraph } from "../base/text/text"
 
-const ExpenseContainer = styled(Flex)`
+const ExpenseEntryContainer = styled(Flex)<DivOnClick>`
 	flex: 1;
 	justify-content: space-between;
 	cursor: pointer;
@@ -22,9 +23,15 @@ const ExpenseContainer = styled(Flex)`
   `}
 `
 
-export const ExpenseListEntry = ({ amount, date, merchant }: Expense) => {
+interface ExpenseEntryProps {
+	expense: Expense
+	onClick: () => void
+}
+
+export const ExpenseListEntry = ({ expense, onClick }: ExpenseEntryProps) => {
+	const { amount, merchant, date } = expense
 	return (
-		<ExpenseContainer className="expense">
+		<ExpenseEntryContainer className="expense" onClick={onClick}>
 			<Flex className="item">
 				<Paragraph>{merchant}</Paragraph>
 			</Flex>
@@ -35,6 +42,28 @@ export const ExpenseListEntry = ({ amount, date, merchant }: Expense) => {
 			<Flex className="item">
 				<Paragraph>{date}</Paragraph>
 			</Flex>
-		</ExpenseContainer>
+		</ExpenseEntryContainer>
+	)
+}
+
+const ExpenseDrawerContainer = styled(Flex)``
+
+export const ExpenseDrawerComponent = ({
+	id,
+	amount,
+	category,
+	comment,
+	date,
+	index,
+	merchant,
+	receipts,
+	user,
+}: Expense) => {
+	return (
+		<ExpenseDrawerContainer direction="column">
+			<Flex>
+				<Heading>Expense {id}</Heading>
+			</Flex>
+		</ExpenseDrawerContainer>
 	)
 }

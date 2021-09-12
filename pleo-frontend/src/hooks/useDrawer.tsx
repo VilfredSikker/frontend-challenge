@@ -22,10 +22,12 @@ const DrawerContainer = styled(Flex)<DrawerContainerProps>`
 	justify-content: flex-end;
 	position: fixed;
 	right: 0;
+	left: 0;
+	bottom: 0;
 	top: 0;
 	width: 100%;
 	height: 100%;
-	background-color: ${(props) => props.theme.colors.background.primary_faded};
+	background-color: ${(props) => props.theme.colors.background.secondary_faded};
 
 	.content {
 		transition: all 400ms;
@@ -51,11 +53,14 @@ interface ContentProps {
 const Content = styled.div<ContentProps>`
 	background-color: ${(props) => props.theme.colors.background.primary};
 	overflow: scroll;
+
 	height: 100%;
 
 	${(props) => props.theme.bp.desktop} {
-		width: 60%;
+		width: 40%;
 		padding: 0px 5%;
+		border-left: ${(props) => props.theme.borders.thin};
+		box-shadow: ${(props) => props.theme.shadows.normal};
 	}
 `
 
@@ -76,7 +81,7 @@ const DismissContainer = styled.div`
 `
 
 interface DrawerProps {
-	initialComponent?: ReactNode
+	initialComponent?: ReactNode | null
 }
 
 interface DrawerResult {
@@ -101,24 +106,22 @@ export const useDrawer = ({
 			}
 		}
 	}
-
 	const Component = () => {
 		return (
 			<DrawerContainer visible={visible} onClick={handleMouseClick}>
 				<Content ref={contentRef} className="content">
 					<DismissContainer className="dismiss-container">
-						<Flex onClick={() => setVisible(false)}>
-							<Dismiss />
-						</Flex>
+						<Flex onClick={() => setVisible(false)}>{/* <Dismiss /> */}</Flex>
 					</DismissContainer>
 					{content}
 				</Content>
 			</DrawerContainer>
 		)
 	}
+	console.log("visible", visible, Component)
 
 	return {
-		drawerContent: Component,
+		drawerContent: <Component />,
 		setDrawerContent: setContent,
 		drawerVisible: visible,
 		setDrawerVisible: setVisible,
