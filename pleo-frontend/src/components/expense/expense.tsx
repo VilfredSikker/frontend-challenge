@@ -62,7 +62,7 @@ export const ExpenseDrawerComponent = ({
 	return (
 		<ExpenseDrawerContainer direction="column">
 			<Flex>
-				<Heading>Expense {id}</Heading>
+				<Heading level="h3">Expense {id}</Heading>
 			</Flex>
 		</ExpenseDrawerContainer>
 	)

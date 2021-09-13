@@ -28,6 +28,10 @@ const H2Container = styled(DefaultHeaderContainer)`
 	font-size: ${(props) => props.theme.fontSize.l};
 `
 
+const H3Container = styled(DefaultHeaderContainer)`
+	font-size: ${(props) => props.theme.fontSize.nm};
+`
+
 export const Heading: HeadingComponent = ({
 	children,
 	className,
@@ -39,6 +43,8 @@ export const Heading: HeadingComponent = ({
 			return <H1Container className={`h1 ${className}`}>{children}</H1Container>
 		case "h2":
 			return <H2Container className={`h2 ${className}`}>{children}</H2Container>
+		case "h3":
+			return <H3Container className={`h3 ${className}`}>{children}</H3Container>
 		default:
 			return <H1Container>{children}</H1Container>
 	}
